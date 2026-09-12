@@ -1,0 +1,43 @@
+# =====================================================================
+# StarTracker: Backend Dependencies
+# SIH26127 - AI Engine for Multi-Camera ANPR Trajectory Tracking
+# =====================================================================
+
+# Web Framework & API Server
+fastapi>=0.109.0
+uvicorn[standard]>=0.27.0
+pydantic>=2.5.0
+pydantic-settings>=2.1.0
+python-multipart>=0.0.6
+python-dotenv>=1.0.0
+
+# Database & Supabase Integration
+supabase>=2.3.0
+postgrest>=0.16.0
+gotrue>=2.8.0
+
+# Computer Vision & Image Processing
+# Note: opencv-python-headless is used to avoid X11/GUI dependencies on servers
+opencv-python-headless>=4.8.0
+numpy>=1.24.0
+pandas>=2.0.0
+Pillow>=10.0.0
+
+# Text & ANPR Matching
+rapidfuzz>=3.5.0
+
+# Lightweight Local AI & Inference
+# Ultralytics provides YOLOv8n (only ~6MB weights, runs at 40+ FPS on CPU)
+ultralytics>=8.1.0
+
+# Optional / Local OCR engines:
+# PaddleOCR is the primary ANPR OCR engine. On low-memory machines, StarTracker
+# includes a robust local adaptive OCR heuristic + RapidFuzz correction fallback.
+# Uncomment below when running in full GPU or full-memory environment:
+# paddlepaddle>=2.5.0
+# paddleocr>=2.7.0
+
+# Testing & Utilities
+pytest>=7.4.0
+httpx>=0.26.0
+requests>=2.31.0
