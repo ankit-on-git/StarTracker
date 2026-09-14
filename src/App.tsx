@@ -40,6 +40,7 @@ export default function App() {
   const [searchResult, setSearchResult] = useState<UniversalSearchResponse | null>(null);
   const [selectedCameraForModal, setSelectedCameraForModal] = useState<Camera | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const [isSearching, setIsSearching] = useState<boolean>(false);
 
   // Initialize data
   useEffect(() => {
@@ -49,7 +50,7 @@ export default function App() {
           StarTrackerAPI.getCameras(),
           StarTrackerAPI.getRecentDetections(),
           StarTrackerAPI.getAnalytics(),
-          StarTrackerAPI.universalSearch('PB10AB1234'),
+          StarTrackerAPI.universalSearch('orange colour vehicle'),
         ]);
 
         setCameras(cams);
@@ -68,12 +69,18 @@ export default function App() {
 
   const handleSearch = async (query: string) => {
     setSearchQuery(query);
+    setActiveTab('vehicles');
+    setIsSearching(true);
     try {
-      const result = await StarTrackerAPI.universalSearch(query);
+      const [result] = await Promise.all([
+        StarTrackerAPI.universalSearch(query),
+        new Promise((res) => setTimeout(res, 800)),
+      ]);
       setSearchResult(result);
-      setActiveTab('vehicles');
     } catch (e) {
       console.error('Search error:', e);
+    } finally {
+      setIsSearching(false);
     }
   };
 
@@ -188,6 +195,7 @@ export default function App() {
           <VehicleSearchView
             searchResult={searchResult}
             searchQuery={searchQuery}
+            isSearching={isSearching}
             onSearch={handleSearch}
             onPlotOnMap={handlePlotOnMap}
             onSelectCamera={(cam) => setSelectedCameraForModal(cam)}
@@ -240,6 +248,10 @@ export default function App() {
         <LiveCameraFeedModal
           camera={selectedCameraForModal}
           onClose={() => setSelectedCameraForModal(null)}
+          onSearchPlate={(plate) => {
+            setSelectedCameraForModal(null);
+            handleSearch(plate);
+          }}
         />
       )}
     </div>

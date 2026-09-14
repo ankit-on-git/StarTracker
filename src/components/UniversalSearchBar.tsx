@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Search, X, Sparkles, Car, Truck, Hash } from 'lucide-react';
+import { Search, X } from 'lucide-react';
 import { ThemeMode } from '../types/theme';
 
 interface UniversalSearchBarProps {
@@ -24,22 +24,9 @@ export const UniversalSearchBar: React.FC<UniversalSearchBarProps> = ({
     }
   };
 
-  const handleChipClick = (chipQuery: string) => {
-    setInputValue(chipQuery);
-    onSearch(chipQuery);
-  };
-
   const clearInput = () => {
     setInputValue('');
   };
-
-  const sampleChips = [
-    { label: 'PB10AB1234', icon: Hash, query: 'PB10AB1234', category: 'Plate', accent: 'border-cyan-500/30 text-cyan-300' },
-    { label: 'red car', icon: Car, query: 'red car', category: 'Vehicle', accent: 'border-rose-500/30 text-rose-300' },
-    { label: 'yellow truck', icon: Truck, query: 'yellow truck', category: 'Heavy', accent: 'border-amber-500/30 text-amber-300' },
-    { label: 'PB10CZ8899', icon: Hash, query: 'PB10CZ8899', category: 'SUV', accent: 'border-emerald-500/30 text-emerald-300' },
-    { label: 'white vehicle', icon: Car, query: 'white vehicle', category: 'Vehicle', accent: 'border-slate-300/30 text-slate-200' },
-  ];
 
   const isLight = themeMode === 'light';
 
@@ -90,32 +77,6 @@ export const UniversalSearchBar: React.FC<UniversalSearchBarProps> = ({
           </div>
         </div>
       </form>
-
-      {/* Glass Suggestion Chips */}
-      <div className="mt-3 flex flex-wrap items-center gap-2 text-xs">
-        <div className={`flex items-center gap-1.5 text-[11px] font-medium pl-2 ${isLight ? 'text-slate-600' : 'text-slate-400'}`}>
-          <Sparkles className="h-3.5 w-3.5 text-lime-400" />
-          <span>Quick queries:</span>
-        </div>
-        {sampleChips.map((chip) => {
-          const Icon = chip.icon;
-          return (
-            <button
-              key={chip.query}
-              type="button"
-              onClick={() => handleChipClick(chip.query)}
-              className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full transition-all duration-200 text-xs backdrop-blur-md ${
-                isLight
-                  ? 'bg-white/80 hover:bg-white border border-slate-200 shadow-sm text-slate-700 hover:text-slate-900'
-                  : `bg-white/[0.04] hover:bg-white/[0.09] border border-white/[0.1] hover:border-white/25 text-slate-300 hover:text-white shadow-[0_4px_12px_rgba(0,0,0,0.2)] ${chip.accent}`
-              }`}
-            >
-              <Icon className="h-3 w-3 opacity-80" />
-              <span>{chip.label}</span>
-            </button>
-          );
-        })}
-      </div>
     </div>
   );
 };

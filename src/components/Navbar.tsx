@@ -28,11 +28,9 @@ export const Navbar: React.FC<NavbarProps> = ({
 }) => {
   const navItems = [
     { id: 'overview', label: 'Dashboard', icon: LayoutDashboard },
-    { id: 'cameras', label: 'Live Cameras', icon: Video },
     { id: 'vehicles', label: 'Vehicle Search', icon: Search },
     { id: 'trajectories', label: 'Trajectories', icon: Route },
     { id: 'analytics', label: 'Urban Analytics', icon: BarChart3 },
-    { id: 'videolab', label: 'Video Lab', icon: Cpu },
   ];
 
   return (
@@ -46,7 +44,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         <div className="flex items-center gap-3">
           <button 
             onClick={() => setActiveTab('overview')}
-            className="flex items-center gap-3 text-left focus:outline-none group"
+            className="flex items-center gap-3 text-left focus:outline-none group cursor-pointer"
           >
             <div className="h-9 w-9 rounded-full bg-gradient-to-tr from-cyan-500/30 via-white/20 to-lime-400/20 border border-white/30 backdrop-blur-xl flex items-center justify-center text-cyan-300 shadow-[0_0_20px_rgba(6,182,212,0.3),inset_0_1px_2px_rgba(255,255,255,0.4)] transition-transform group-hover:scale-105">
               <Radio className="h-4.5 w-4.5 animate-pulse" />
@@ -69,7 +67,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 key={item.id}
                 id={`nav-link-${item.id}`}
                 onClick={() => setActiveTab(item.id)}
-                className={`relative flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-medium transition-all duration-300 ${
+                className={`relative flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-medium transition-all duration-300 cursor-pointer ${
                   isActive
                     ? 'text-white bg-white/[0.22] shadow-[0_2px_12px_rgba(0,0,0,0.4),inset_0_1px_1px_rgba(255,255,255,0.35)] border border-white/[0.25]'
                     : 'text-slate-300 hover:text-white hover:bg-white/[0.08]'
@@ -82,25 +80,11 @@ export const Navbar: React.FC<NavbarProps> = ({
           })}
         </nav>
 
-        {/* Right Status Capsule & Theme Toggle Icon Button */}
+        {/* Right Status Section */}
         <div className="flex items-center gap-2.5">
-          {/* Theme Selector Button with Icon */}
-          <ThemeToggle
-            currentTheme={currentTheme}
-            onSelectTheme={onSelectTheme}
-          />
-
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.06] border border-white/[0.12] backdrop-blur-md text-slate-200 text-xs shadow-[inset_0_1px_1px_rgba(255,255,255,0.15)]">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
-            </span>
-            <span className="hidden sm:inline font-medium text-[11px] text-emerald-300">Live Grid</span>
-          </div>
-
-          <div className="hidden lg:flex items-center gap-1.5 text-xs text-slate-300 bg-black/30 border border-white/[0.08] px-3 py-1.5 rounded-full backdrop-blur-md">
+          <div className="flex items-center gap-1.5 text-xs text-slate-300 bg-black/30 border border-white/[0.08] px-3 py-1.5 rounded-full backdrop-blur-md">
             <ShieldCheck className="h-3.5 w-3.5 text-cyan-300" />
-            <span className="text-[11px] text-slate-300">AI Active</span>
+            <span className="text-[11px] text-slate-300 font-medium">AI Active</span>
           </div>
         </div>
       </div>

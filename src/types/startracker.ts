@@ -99,12 +99,27 @@ export interface PersonEvent {
   video_path?: string;
 }
 
+export interface SupabaseVehicleDetection {
+  id?: string | number;
+  plate_number: string;
+  color: string;
+  confidence: number;
+  camera_id: string;
+  thumbnail?: string;
+  video_url?: string;
+  location?: string;
+  object_type?: string;
+  person_clothing_color?: string | null;
+  detected_at?: string;
+}
+
 export interface UniversalSearchResponse {
-  query_type: 'plate' | 'vehicle_attribute' | 'unknown';
+  query_type: 'plate' | 'vehicle_attribute' | 'clothing' | 'unknown';
   parsed_filters: Record<string, any>;
   total_results: number;
   disclaimer?: string;
   vehicles: VehicleTrajectoryResult[];
+  supabase_detections?: SupabaseVehicleDetection[];
 }
 
 export interface AnalyticsSummary {

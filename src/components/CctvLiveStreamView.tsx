@@ -222,22 +222,18 @@ export const CctvLiveStreamView: React.FC<CctvLiveStreamViewProps> = ({
         <div className="absolute inset-0 p-3 pointer-events-none flex flex-col justify-between z-30 font-mono text-xs">
           {/* Top Bar */}
           <div className="flex items-start justify-between">
-            <div className="flex items-center gap-2 bg-black/75 backdrop-blur-sm px-2.5 py-1 rounded-md border border-white/15">
+            <div className="flex items-center gap-2 bg-black/85 backdrop-blur-sm px-2.5 py-1 rounded-md border border-white/15">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
               </span>
               <span className="text-white font-bold tracking-wider text-[10px]">
-                LIVE CCTV
-              </span>
-              <span className="text-slate-500">|</span>
-              <span className="text-cyan-400 font-bold text-[10px]">
-                {camera.id}
+                {camera.id || 'CAM-01'} • LIVE CCTV • AI ANALYSIS
               </span>
             </div>
 
             {/* Live Millisecond Timecode */}
-            <div className="bg-black/75 backdrop-blur-sm px-2.5 py-1 rounded-md border border-white/15 text-emerald-400 font-mono text-[10px] tracking-tight">
+            <div className="bg-black/85 backdrop-blur-sm px-2.5 py-1 rounded-md border border-white/15 text-emerald-400 font-mono text-[10px] tracking-tight">
               {timestampStr}
             </div>
           </div>

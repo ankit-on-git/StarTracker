@@ -33,6 +33,8 @@ export const VehicleResultCard: React.FC<VehicleResultCardProps> = ({
   // Apple-style Glass pill color badges
   const colorBadges: Record<string, { bg: string; text: string; dot: string; border: string }> = {
     red: { bg: 'bg-rose-500/15', text: 'text-rose-200', dot: 'bg-rose-400', border: 'border-rose-500/30' },
+    orange: { bg: 'bg-orange-500/20', text: 'text-orange-200', dot: 'bg-orange-400', border: 'border-orange-500/40' },
+    'orange/yellow': { bg: 'bg-amber-500/20', text: 'text-amber-200', dot: 'bg-amber-400', border: 'border-amber-500/40' },
     white: { bg: 'bg-white/20', text: 'text-white', dot: 'bg-white', border: 'border-white/40' },
     silver: { bg: 'bg-slate-300/15', text: 'text-slate-200', dot: 'bg-slate-300', border: 'border-slate-300/30' },
     blue: { bg: 'bg-blue-500/15', text: 'text-blue-200', dot: 'bg-blue-400', border: 'border-blue-500/30' },

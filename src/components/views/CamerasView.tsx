@@ -40,6 +40,7 @@ export const CamerasView: React.FC<CamerasViewProps> = ({
   const [filterStatus, setFilterStatus] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [isAddModalOpen, setIsAddModalOpen] = useState<boolean>(false);
+  const [playingVideoCardId, setPlayingVideoCardId] = useState<string | null>(null);
 
   const filteredCameras = cameras.filter((cam) => {
     const matchesStatus = filterStatus === 'all' || cam.status === filterStatus;
@@ -167,11 +168,10 @@ export const CamerasView: React.FC<CamerasViewProps> = ({
               {/* Live Footage Thumbnail / Interactive In-Place Video Player */}
               <div className="relative aspect-video bg-black overflow-hidden group/vid cursor-pointer">
                 {isPlayingThis ? (
-                  <iframe
-                    src={`https://www.youtube-nocookie.com/embed/${ytId}?autoplay=1&mute=1&playsinline=1&controls=1&modestbranding=1&rel=0`}
-                    title={cam.name}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    className="w-full h-full border-0"
+                  <CctvLiveStreamView
+                    camera={cam}
+                    showHud={true}
+                    showDetections={true}
                   />
                 ) : (
                   <div 
